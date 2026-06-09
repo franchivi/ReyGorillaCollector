@@ -310,6 +310,27 @@ function setupEventListeners() {
       }
     });
   }
+
+  // Game Cover File Upload reader
+  const coverFileInput = document.getElementById('game-cover-file');
+  const coverUrlInput = document.getElementById('game-cover-url');
+  if (coverFileInput && coverUrlInput) {
+    coverFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      
+      if (file.size > 800 * 1024) {
+        alert("Atención: El archivo es algo grande. Se recomiendan portadas de menos de 500KB para optimizar el almacenamiento local.");
+      }
+      
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        coverUrlInput.value = event.target.result;
+        playSound('save');
+      };
+      reader.readAsDataURL(file);
+    });
+  }
 }
 
 // Helper to update toggle status visually
@@ -527,6 +548,8 @@ function renderCatalog() {
       if (game.status === 'playing') { statusColor = 'var(--status-playing)'; statusName = 'Jugando'; }
 
       // Custom cartridge vs disc jewel case styles
+      const coverBg = game.coverUrl ? `url('${game.coverUrl}')` : consoleMeta.gradient;
+
       if (isDisc) {
         cardHTML = `
           <div class="game-card card-disc" onclick="openDetailModal('${game.id}')">
@@ -536,7 +559,7 @@ function renderCatalog() {
               <span class="disc-spine-text">${consoleMeta.name.toUpperCase()}</span>
             </div>
             <div class="disc-cover-container">
-              <div class="disc-cover" style="background-image: ${consoleMeta.gradient}">
+              <div class="disc-cover" style="background-image: ${coverBg}">
                 <div class="disc-cover-overlay"></div>
                 <div style="z-index: 2; display: flex; justify-content: space-between; align-items: center; width: 100%;">
                   <span class="card-brand">CD-ROM FORMAT</span>
@@ -569,7 +592,7 @@ function renderCatalog() {
               <span></span><span></span><span></span><span></span><span></span>
             </div>
             <div class="cartridge-label-container">
-              <div class="cartridge-label" style="background-image: ${consoleMeta.gradient}">
+              <div class="cartridge-label" style="background-image: ${coverBg}">
                 <div class="cartridge-label-overlay"></div>
                 <div style="z-index: 2; display: flex; justify-content: space-between; align-items: center; width: 100%;">
                   <span class="card-brand">RETRO CARTRIDGE</span>
@@ -689,6 +712,16 @@ function openDetailModal(gameId) {
   consoleBadge.textContent = consoleMeta.name;
   consoleBadge.style.backgroundColor = genMeta.color;
 
+  const coverContainer = document.getElementById('detail-cover-container');
+  const coverImg = document.getElementById('detail-cover');
+  if (game.coverUrl) {
+    coverContainer.style.display = 'block';
+    coverImg.src = game.coverUrl;
+  } else {
+    coverContainer.style.display = 'none';
+    coverImg.src = '';
+  }
+
   document.getElementById('detail-generation').textContent = `${genMeta.name} (${genMeta.period})`;
   document.getElementById('detail-region').textContent = game.region;
   document.getElementById('detail-format').textContent = game.format || 'Físico';
@@ -768,6 +801,7 @@ function openAddEditModal(gameId = null) {
       document.getElementById('game-price').value = game.price || '';
       document.getElementById('game-notes').value = game.notes || '';
       document.getElementById('game-rating').value = game.rating || 5;
+      document.getElementById('game-cover-url').value = game.coverUrl || '';
       updateStarsUI(game.rating || 5);
     }
   } else {
@@ -805,6 +839,7 @@ function saveGame() {
   const price = parseFloat(document.getElementById('game-price').value) || null;
   const notes = document.getElementById('game-notes').value.trim();
   const rating = parseInt(document.getElementById('game-rating').value) || 5;
+  const coverUrl = document.getElementById('game-cover-url').value.trim() || null;
 
   if (!title || !consoleId) {
     alert('Por favor, introduce el título y selecciona la consola.');
@@ -829,7 +864,8 @@ function saveGame() {
         status,
         price,
         notes,
-        rating
+        rating,
+        coverUrl
       };
     }
   } else {
@@ -846,6 +882,7 @@ function saveGame() {
       price,
       notes,
       rating,
+      coverUrl,
       dateAdded: new Date().toISOString().split('T')[0]
     };
     state.games.push(newGame);

@@ -292,6 +292,16 @@
             </div>
 
             <div class="form-group form-group-full">
+              <label class="form-label">Imagen de Portada (URL o Archivo)</label>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <input type="text" id="game-cover-url" class="form-input" style="flex: 1; min-width: 200px;" placeholder="Pega la URL de la portada...">
+                <button type="button" class="btn-retro" onclick="document.getElementById('game-cover-file').click()" style="padding: 0.6rem 1rem; font-size: 0.95rem;">📁 Subir Portada</button>
+                <input type="file" id="game-cover-file" style="display: none;" accept="image/*">
+              </div>
+              <span style="font-size: 0.75rem; color: #6b7280; margin-top: 2px;">Nota: Subir archivos grandes puede consumir el espacio de almacenamiento local (límite 5MB). Se recomiendan URLs.</span>
+            </div>
+
+            <div class="form-group form-group-full">
               <label class="form-label" for="game-notes">Notas / Descripción</label>
               <textarea id="game-notes" class="form-input form-textarea" placeholder="Detalles de la compra, estado de la etiqueta, número de serie, etc."></textarea>
             </div>
@@ -314,13 +324,16 @@
         <button class="modal-close" id="btn-close-detail">✕</button>
       </div>
       <div class="modal-body">
-        <div class="detail-layout">
-          <div class="detail-header-block">
-            <div>
-              <h3 class="detail-title" id="detail-title">Super Mario World</h3>
-              <span class="detail-console" id="detail-console">SNES / Famicom</span>
+          <div class="detail-layout">
+            <div class="detail-header-block" style="display: flex; gap: 1.5rem; align-items: center;">
+              <div class="detail-cover-wrapper" id="detail-cover-container" style="display: none; width: 100px; height: 130px; flex-shrink: 0; border-radius: 6px; overflow: hidden; border: 1.5px solid var(--accent-gold); box-shadow: var(--shadow-sm);">
+                <img id="detail-cover" src="" alt="Portada" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <div>
+                <h3 class="detail-title" id="detail-title">Super Mario World</h3>
+                <span class="detail-console" id="detail-console">SNES / Famicom</span>
+              </div>
             </div>
-          </div>
 
           <div class="detail-grid">
             <div class="detail-item">
