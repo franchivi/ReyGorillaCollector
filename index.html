@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReygorillaCollector | Catálogo de Videojuegos Retro</title>
+  <meta name="description" content="Gestiona y cataloga tu colección de videojuegos retro desde la 1ª hasta la 6ª generación.">
+  
+  <!-- Styling -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="crt-mode">
+
+  <!-- Main Navigation Header -->
+  <header>
+    <div class="logo-container">
+      <img src="images/logoreygorilla.png" alt="Reygorilla Logo" class="logo-image" onerror="this.style.display='none'">
+      <h1 class="logo-text" id="brand-title">
+        ReygorillaCollector
+        <span>Colección Retro Clásica</span>
+      </h1>
+    </div>
+    <div class="header-controls">
+      <button class="btn-retro" id="toggle-crt" title="Activar/Desactivar efecto monitor CRT">📺 CRT Mode</button>
+      <button class="btn-retro btn-retro-primary" id="toggle-sound" title="Activar/Desactivar sonido retro">🔊 Sonido</button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main>
+    
+    <!-- Hero Header / Welcome Banner -->
+    <section class="hero-section" aria-labelledby="hero-title-text">
+      <img src="images/logoreygorilla.png" alt="Reygorilla Collector Logo" class="hero-logo" onerror="this.style.display='none'">
+      <h2 class="hero-title" id="hero-title-text">ReygorillaCollector</h2>
+      <p class="hero-subtitle">La Base de Datos Oficial de tu Colección de Videojuegos Retro</p>
+      <div class="hero-divider"></div>
+    </section>
+    
+    <!-- Dashboard Overview -->
+    <section class="dashboard-grid" aria-label="Estadísticas de la Colección">
+      
+      <div class="dashboard-card" id="card-stat-total">
+        <div class="dashboard-card-icon">🎮</div>
+        <div class="dashboard-card-info">
+          <span class="dashboard-card-label">Total Juegos</span>
+          <span class="dashboard-card-value" id="stat-total">0</span>
+        </div>
+      </div>
+
+      <div class="dashboard-card" id="card-stat-owned">
+        <div class="dashboard-card-icon">📦</div>
+        <div class="dashboard-card-info">
+          <span class="dashboard-card-label">En Propiedad</span>
+          <span class="dashboard-card-value" id="stat-owned">0</span>
+        </div>
+      </div>
+
+      <div class="dashboard-card" id="card-stat-completed">
+        <div class="dashboard-card-icon">🏆</div>
+        <div class="dashboard-card-info">
+          <span class="dashboard-card-label">Ratio Completados</span>
+          <span class="dashboard-card-value" id="stat-completed">0%</span>
+        </div>
+      </div>
+
+      <div class="dashboard-card" id="card-stat-wishlist">
+        <div class="dashboard-card-icon">✨</div>
+        <div class="dashboard-card-info">
+          <span class="dashboard-card-label">Lista Deseos</span>
+          <span class="dashboard-card-value" id="stat-wishlist">0</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Detailed Analytics Panel -->
+    <section class="stats-row" aria-label="Distribución y Análisis">
+      
+      <!-- Generations Bar Chart Panel -->
+      <div class="panel" id="panel-generations-chart">
+        <div class="panel-header">
+          <h2 class="panel-title">👾 Distribución por Generaciones</h2>
+        </div>
+        <div class="generation-chart" id="chart-generations">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Top Platforms List Panel -->
+      <div class="panel" id="panel-platforms-list">
+        <div class="panel-header">
+          <h2 class="panel-title">🕹️ Consolas Activas</h2>
+        </div>
+        <div class="distribution-list" id="distribution-list">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Mobile Filter Toggle Button -->
+    <button class="btn-retro" id="btn-toggle-filters" style="display: none; align-items: center; justify-content: center; width: 100%; margin-bottom: 1.5rem; font-size: 1.15rem; padding: 0.75rem 1rem;">
+      🔍 Mostrar / Ocultar Filtros
+    </button>
+
+    <!-- Catalog Main Area -->
+    <section class="catalog-container" aria-label="Catálogo de Juegos">
+      
+      <!-- Left Filters Sidebar -->
+      <aside class="filters-sidebar">
+        
+        <div class="filter-group">
+          <label class="filter-label" for="search-game">Buscar</label>
+          <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-game" class="search-input" placeholder="Título, consola, notas...">
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label" for="filter-generation">Generación</label>
+          <select id="filter-generation" class="retro-select">
+            <option value="">Todas las generaciones</option>
+            <option value="gen1_2">1ª y 2ª Gen (1972 - 1983)</option>
+            <option value="gen3">3ª Gen (1983 - 1987)</option>
+            <option value="gen4">4ª Gen (1987 - 1993)</option>
+            <option value="gen5">5ª Gen (1993 - 1998)</option>
+            <option value="gen6">6ª Gen (1998 - 2005)</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label" for="filter-console">Consola</label>
+          <select id="filter-console" class="retro-select">
+            <!-- Populated by JavaScript -->
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label" for="filter-status">Estado de Colección</label>
+          <select id="filter-status" class="retro-select">
+            <option value="">Todos los estados</option>
+            <option value="owned">En Propiedad</option>
+            <option value="completed">Completado</option>
+            <option value="playing">Jugando actualmente</option>
+            <option value="wishlist">Lista de deseos</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label" for="filter-condition">Estado Físico</label>
+          <select id="filter-condition" class="retro-select">
+            <option value="">Cualquier estado</option>
+            <option value="Loose">Loose (Solo Cartucho/Disco)</option>
+            <option value="Boxed">Boxed (Con Caja)</option>
+            <option value="CIB">CIB (Completo con Caja y Manual)</option>
+            <option value="Sealed">Sealed (Precintado Nuevo)</option>
+          </select>
+        </div>
+
+        <!-- Management Actions -->
+        <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+          <button class="btn-retro btn-retro-primary" id="btn-add-game" style="justify-content: center;">+ Agregar Juego</button>
+          <button class="btn-retro" id="btn-backup" style="justify-content: center;">💾 Exportar JSON</button>
+          <button class="btn-retro" id="btn-import-trigger" style="justify-content: center;">📁 Importar JSON</button>
+          <input type="file" id="import-file" style="display: none;" accept=".json">
+        </div>
+
+      </aside>
+
+      <!-- Right Catalog List -->
+      <div class="catalog-main">
+        
+        <!-- Catalog Toolbar -->
+        <div class="catalog-toolbar">
+          <div class="catalog-info-text">
+            Mostrando <span class="catalog-info-count" id="catalog-count">0</span> videojuegos
+          </div>
+          
+          <div style="display: flex; gap: 1rem; align-items: center;">
+            <select id="sort-by" class="retro-select" style="width: auto; padding-right: 2rem;">
+              <option value="title-asc">Título (A-Z)</option>
+              <option value="title-desc">Título (Z-A)</option>
+              <option value="date-desc">Agregado reciente</option>
+              <option value="date-asc">Agregado antiguo</option>
+              <option value="rating-desc">Valoración más alta</option>
+              <option value="price-desc">Precio más alto</option>
+            </select>
+
+            <div class="view-controls">
+              <button class="btn-view-toggle active" id="view-grid" title="Vista Cuadrícula">⬜</button>
+              <button class="btn-view-toggle" id="view-list" title="Vista Lista">☰</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Grid/List Container -->
+        <div id="catalog-wrapper">
+          <!-- Rendered dynamically by JavaScript -->
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Modals Section -->
+  
+  <!-- Add/Edit Game Modal -->
+  <div class="modal-overlay" id="modal-form">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="form-modal-title">Agregar Videojuego</h2>
+        <button class="modal-close" id="btn-close-form">✕</button>
+      </div>
+      <form id="game-form">
+        <div class="modal-body">
+          <div class="form-grid">
+            
+            <div class="form-group form-group-full">
+              <label class="form-label" for="game-title">Título del Videojuego *</label>
+              <input type="text" id="game-title" class="form-input" required placeholder="Ej. The Legend of Zelda: Ocarina of Time">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="game-console">Consola *</label>
+              <select id="game-console" class="retro-select" required>
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="game-region">Región</label>
+              <select id="game-region" class="retro-select">
+                <option value="EUR">PAL (EUR / ESP)</option>
+                <option value="USA">NTSC-U (USA)</option>
+                <option value="JPN">NTSC-J (JPN)</option>
+                <option value="GBL">Global (Multiregión)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="game-format">Formato Físico</label>
+              <select id="game-format" class="retro-select">
+                <option value="Cartucho">Cartucho</option>
+                <option value="CD-ROM">CD-ROM</option>
+                <option value="DVD-ROM">DVD-ROM</option>
+                <option value="MiniDVD">MiniDVD</option>
+                <option value="GD-ROM">GD-ROM</option>
+                <option value="Tarjeta">Tarjeta / Card</option>
+                <option value="Digital">Digital / Otro</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="game-condition">Estado Físico</label>
+              <select id="game-condition" class="retro-select">
+                <option value="Loose">Loose (Solo Cartucho/Disco)</option>
+                <option value="Boxed">Boxed (Con Caja)</option>
+                <option value="CIB">CIB (Caja y Manual / Completo)</option>
+                <option value="Sealed">Sealed (Precintado)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="game-status">Estado Colección</label>
+              <select id="game-status" class="retro-select">
+                <option value="owned">En Propiedad</option>
+                <option value="completed">Completado</option>
+                <option value="playing">Jugando actualmente</option>
+                <option value="wishlist">Lista de deseos</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="game-price">Precio Adquisición (€)</label>
+              <input type="number" id="game-price" class="form-input" min="0" step="0.01" placeholder="Ej: 49.99">
+            </div>
+
+            <div class="form-group form-group-full">
+              <label class="form-label">Valoración Personal</label>
+              <div class="stars-selector" id="stars-container">
+                <span class="star-option" data-value="1">☆</span>
+                <span class="star-option" data-value="2">☆</span>
+                <span class="star-option" data-value="3">☆</span>
+                <span class="star-option" data-value="4">☆</span>
+                <span class="star-option" data-value="5">☆</span>
+              </div>
+              <input type="hidden" id="game-rating" value="5">
+            </div>
+
+            <div class="form-group form-group-full">
+              <label class="form-label" for="game-notes">Notas / Descripción</label>
+              <textarea id="game-notes" class="form-input form-textarea" placeholder="Detalles de la compra, estado de la etiqueta, número de serie, etc."></textarea>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-retro" onclick="closeModal('modal-form')">Cancelar</button>
+          <button type="submit" class="btn-retro btn-retro-primary">Guardar Videojuego</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Game Detail Modal (Back Cover View) -->
+  <div class="modal-overlay" id="modal-detail">
+    <div class="modal-content" style="max-width: 600px;">
+      <div class="modal-header">
+        <h2 class="modal-title">Detalles del Cartucho</h2>
+        <button class="modal-close" id="btn-close-detail">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-layout">
+          <div class="detail-header-block">
+            <div>
+              <h3 class="detail-title" id="detail-title">Super Mario World</h3>
+              <span class="detail-console" id="detail-console">SNES / Famicom</span>
+            </div>
+          </div>
+
+          <div class="detail-grid">
+            <div class="detail-item">
+              <span class="detail-label">Generación</span>
+              <span class="detail-value" id="detail-generation">Cuarta Gen</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Región</span>
+              <span class="detail-value" id="detail-region">EUR</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Formato</span>
+              <span class="detail-value" id="detail-format">Cartucho</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Estado Físico</span>
+              <span class="detail-value" id="detail-condition">CIB</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Colección</span>
+              <span class="detail-value" id="detail-status" style="font-weight: bold;">En Propiedad</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Precio Compra</span>
+              <span class="detail-value" id="detail-price">90 €</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Valoración</span>
+              <span class="detail-value" id="detail-rating" style="color: var(--accent-gold);">★★★★★</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Fecha Registro</span>
+              <span class="detail-value" id="detail-date">2026-06-09</span>
+            </div>
+          </div>
+
+          <div class="detail-notes" id="detail-notes-container">
+            <span class="detail-label" style="display: block; margin-bottom: 0.25rem;">Notas del Coleccionista:</span>
+            <p id="detail-notes"></p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content: space-between;">
+        <button class="btn-retro" id="btn-delete-detail" style="border-color: #ef4444; color: #ef4444;">✕ Eliminar</button>
+        <div>
+          <button class="btn-retro" onclick="closeModal('modal-detail')">Cerrar</button>
+          <button class="btn-retro btn-retro-primary" id="btn-edit-detail">✏️ Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-credits">ReygorillaCollector <span>v1.0.0</span></div>
+    <div>Plataforma de catalogación de hardware clásico y coleccionismo de videojuegos retro.</div>
+    <div style="font-size: 0.75rem; margin-top: 0.5rem; color: #4b5563;">Desarrollado para Reygorilla. Todos los derechos reservados &copy; 2026.</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/consoles-data.js"></script>
+  <script src="js/initial-games.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
