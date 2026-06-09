@@ -56,6 +56,18 @@ function initApp() {
   const storedGames = localStorage.getItem('rg_games_collection');
   if (storedGames) {
     state.games = JSON.parse(storedGames);
+    // Migration: Update default games with cover URLs from INITIAL_GAMES if they don't have them
+    let migrated = false;
+    state.games.forEach(g => {
+      const initial = INITIAL_GAMES.find(i => i.id === g.id);
+      if (initial && initial.coverUrl && !g.coverUrl) {
+        g.coverUrl = initial.coverUrl;
+        migrated = true;
+      }
+    });
+    if (migrated) {
+      localStorage.setItem('rg_games_collection', JSON.stringify(state.games));
+    }
   } else {
     state.games = [...INITIAL_GAMES];
     localStorage.setItem('rg_games_collection', JSON.stringify(state.games));

@@ -1,5 +1,6 @@
 // ReygorillaCollector - Initial Games Database
 // This database pre-populates the collector's list on first load to showcase the app.
+// Includes high-quality, stable public Wikimedia/Wikipedia cover art URLs.
 
 const INITIAL_GAMES = [
   // 1ª y 2ª Generación
@@ -15,7 +16,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 150,
     notes: "Tarjeta de juego Nº 1. Requiere la plantilla de plástico para el televisor. ¡Una pieza de historia!",
-    dateAdded: "2026-01-15"
+    dateAdded: "2026-01-15",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/commons/1/18/Magnavox_Odyssey_card.jpg"
   },
   {
     id: "game_atari2600_pitfall",
@@ -29,7 +31,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 45,
     notes: "Obra maestra de Activision para la Atari 2600. Caja y manual en muy buen estado.",
-    dateAdded: "2026-02-10"
+    dateAdded: "2026-02-10",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/6/6d/Pitfall%21_Atari_2600_box_art.jpg"
   },
   {
     id: "game_colecovision_donkey",
@@ -43,7 +46,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 35,
     notes: "Impresionante port del arcade de Nintendo. Prácticamente idéntico al mueble original.",
-    dateAdded: "2026-03-01"
+    dateAdded: "2026-03-01",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/a/a4/Donkey_Kong_NES_box_art.jpg"
   },
   {
     id: "game_intellivision_astrosmash",
@@ -57,7 +61,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 25,
     notes: "Incluye las dos plantillas de plástico para meter en el teclado numérico del mando.",
-    dateAdded: "2026-03-12"
+    dateAdded: "2026-03-12",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/6/6f/Astrosmash_intellivision_box_art.png"
   },
   {
     id: "game_atari5200_breakout",
@@ -71,7 +76,8 @@ const INITIAL_GAMES = [
     status: "wishlist",
     price: 20,
     notes: "Buscando una copia CIB para poder disfrutarlo con los mandos analógicos de la 5200.",
-    dateAdded: "2026-04-05"
+    dateAdded: "2026-04-05",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/f/fc/Breakout_Atari_2600_box_art.jpg"
   },
 
   // 3ª Generación
@@ -87,7 +93,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 85,
     notes: "Versión PAL española. Caja de cartón ligeramente desgastada en las pestañas, pero con manual original.",
-    dateAdded: "2025-11-20"
+    dateAdded: "2025-11-20",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/a/a5/Super_Mario_Bros._3_coverart.png"
   },
   {
     id: "game_mastersystem_alex",
@@ -101,7 +108,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 30,
     notes: "El clásico de Master System. Viene pre-instalado en la memoria de la consola, pero tengo el cartucho físico.",
-    dateAdded: "2025-12-05"
+    dateAdded: "2025-12-05",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/f/f6/Alex_Kidd_in_Miracle_World_Cover.jpg"
   },
   {
     id: "game_atari7800_foodfight",
@@ -115,7 +123,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 28,
     notes: "Divertidísimo arcade portado de forma magistral. Los gráficos son geniales.",
-    dateAdded: "2026-04-18"
+    dateAdded: "2026-04-18",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/f/f3/Food_Fight_arcade_flyer.png"
   },
 
   // 4ª Generación
@@ -131,7 +140,8 @@ const INITIAL_GAMES = [
     status: "completed",
     price: 90,
     notes: "Juego de lanzamiento de SNES. 100% completado con las 96 salidas. ¡Esencial!",
-    dateAdded: "2025-09-10"
+    dateAdded: "2025-09-10",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/3/32/Super_Mario_World_Coverart.png"
   },
   {
     id: "game_megadrive_sonic2",
@@ -145,7 +155,8 @@ const INITIAL_GAMES = [
     status: "completed",
     price: 40,
     notes: "Caja de plástico negra de Sega clásica, manual en múltiples idiomas. En perfecto estado de conservación.",
-    dateAdded: "2025-10-02"
+    dateAdded: "2025-10-02",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/0/0c/Sonic_the_Hedgehog_2_Genesis_Box_Art.jpg"
   },
   {
     id: "game_pcengine_rondo",
@@ -159,7 +170,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 180,
     notes: "Para la PC Engine Super CD-ROM². Edición japonesa original con spinecard (Obi). Una joya de coleccionista.",
-    dateAdded: "2026-02-28"
+    dateAdded: "2026-02-28",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/a/a2/Castlevania_Rondo_of_Blood_TurboGrafx-16_cover_art.png"
   },
   {
     id: "game_neogeo_metalslug",
@@ -173,7 +185,8 @@ const INITIAL_GAMES = [
     status: "wishlist",
     price: 2500,
     notes: "El Santo Grial. Muy difícil de conseguir original a precio razonable. Actualmente en lista de deseos.",
-    dateAdded: "2026-05-01"
+    dateAdded: "2026-05-01",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/b/bc/Metal_slug_box_front.png"
   },
   {
     id: "game_gameboy_tetris",
@@ -187,7 +200,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 15,
     notes: "El cartucho con el que empezó todo. Conserva la pegatina frontal original en buen estado.",
-    dateAdded: "2025-08-15"
+    dateAdded: "2025-08-15",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/4/4a/Tetris_Boxart.jpg"
   },
   {
     id: "game_gamegear_sonicchaos",
@@ -201,7 +215,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 35,
     notes: "Viene en su caja de cartón azul de Sega. Incluye el protector de plástico para el cartucho.",
-    dateAdded: "2026-01-20"
+    dateAdded: "2026-01-20",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/0/07/Sonic_Chaos_box_art.png"
   },
   {
     id: "game_lynx_blue",
@@ -215,7 +230,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 22,
     notes: "Espectacular simulador de vuelo que demostraba la capacidad de escalado de sprites de la portátil.",
-    dateAdded: "2026-04-10"
+    dateAdded: "2026-04-10",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/8/8a/Blue_Lightning_Atari_Lynx_Cover_Art.jpg"
   },
 
   // 5ª Generación
@@ -231,7 +247,8 @@ const INITIAL_GAMES = [
     status: "completed",
     price: 75,
     notes: "Edición PAL España con doblaje legendario en castellano. Discos sin apenas arañazos. Incluye demo de Silent Hill.",
-    dateAdded: "2025-09-05"
+    dateAdded: "2025-09-05",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/3/33/Metal_Gear_Solid_cover_art.png"
   },
   {
     id: "game_n64_mario64",
@@ -245,7 +262,8 @@ const INITIAL_GAMES = [
     status: "completed",
     price: 95,
     notes: "Caja PAL España. El juego que definió las tres dimensiones. Conserva el manual de instrucciones impecable.",
-    dateAdded: "2025-09-12"
+    dateAdded: "2025-09-12",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/5/50/Super_Mario_64_box_art.jpg"
   },
   {
     id: "game_saturn_nights",
@@ -259,7 +277,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 60,
     notes: "Viene en la caja de cartón grande junto con el mando analógico 3D de Sega Saturn.",
-    dateAdded: "2026-01-05"
+    dateAdded: "2026-01-05",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/3/36/Nights_Saturn_Cover_Art.jpg"
   },
   {
     id: "game_3do_roadrash",
@@ -273,7 +292,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 70,
     notes: "La mejor versión de este clásico de motos con vídeos reales y banda sonora de grunge espectacular.",
-    dateAdded: "2026-04-30"
+    dateAdded: "2026-04-30",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/d/dc/Road_Rash_3DO_Cover.jpg"
   },
   {
     id: "game_jaguar_tempest",
@@ -287,7 +307,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 110,
     notes: "Obra maestra de Jeff Minter. Indispensable para cualquier coleccionista de Jaguar. Música tecno sublime.",
-    dateAdded: "2026-05-15"
+    dateAdded: "2026-05-15",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/8/87/Tempest_2000_Jaguar_box_art.png"
   },
   {
     id: "game_neogeocd_kof98",
@@ -301,7 +322,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 65,
     notes: "Edición japonesa con manual grueso ilustrado y carátula preciosa. Tiempos de carga notables pero banda sonora AST espectacular.",
-    dateAdded: "2026-03-25"
+    dateAdded: "2026-03-25",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/2/23/The_King_of_Fighters_%2798_cover.png"
   },
   {
     id: "game_gbc_pokemongold",
@@ -315,7 +337,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 120,
     notes: "Edición española. Pila interna recién cambiada para poder guardar partida y usar el reloj interno.",
-    dateAdded: "2025-11-15"
+    dateAdded: "2025-11-15",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/e/e3/Pok%C3%A9mon_Gold_cover.png"
   },
 
   // 6ª Generación
@@ -331,7 +354,8 @@ const INITIAL_GAMES = [
     status: "playing",
     price: 80,
     notes: "Estuche de cartón exterior algo desgastado, pero los 4 estuches de plástico interiores y manuales están perfectos.",
-    dateAdded: "2025-12-18"
+    dateAdded: "2025-12-18",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/5/5f/Shenmuecover.jpg"
   },
   {
     id: "game_ps2_shadow",
@@ -345,7 +369,8 @@ const INITIAL_GAMES = [
     status: "completed",
     price: 45,
     notes: "Edición especial de cartón que incluye postales de arte. Una de las mayores joyas artísticas de PS2.",
-    dateAdded: "2025-10-10"
+    dateAdded: "2025-10-10",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/b/b5/Shadow_of_the_colossus.jpg"
   },
   {
     id: "game_gamecube_smash",
@@ -359,7 +384,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 70,
     notes: "Excelente juego de lucha multijugador. Carátula limpia y disco impecable. Versión Player's Choice.",
-    dateAdded: "2025-10-25"
+    dateAdded: "2025-10-25",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/f/f3/Super_Smash_Bros._Melee_box_art.png"
   },
   {
     id: "game_xbox_halo",
@@ -373,7 +399,8 @@ const INITIAL_GAMES = [
     status: "completed",
     price: 25,
     notes: "Edición clásica de caja verde de Xbox. El juego que redefinió los shooters en consola.",
-    dateAdded: "2025-11-01"
+    dateAdded: "2025-11-01",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/8/80/Halo_-_Combat_Evolved_%28Box_Art%29.png"
   },
   {
     id: "game_gba_ariasorrow",
@@ -387,7 +414,8 @@ const INITIAL_GAMES = [
     status: "owned",
     price: 320,
     notes: "Precintado de fábrica con la tira oficial de Nintendo roja. La joya de mi colección de portátiles.",
-    dateAdded: "2026-05-20"
+    dateAdded: "2026-05-20",
+    coverUrl: "https://upload.wikimedia.org/wikipedia/en/e/e0/Castlevania_aria_of_sorrow_boxart.jpg"
   }
 ];
 
